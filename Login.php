@@ -1,18 +1,3 @@
-<?php
-  
-  //authenticate user, start a session
-  session_start();
-
-  //check for login
-  if(!(isset($_SESSION['login']) && $_SESSION['login']!='')) {
-
-    //if no login redirect to login screen
-    header("Location: Login.php");
-
-  }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +26,7 @@
       }
 
       .container {
-        background-image: url("src/img/portfoliobg.jpg");
+        background-image: url("src/img/background.jpg");
         width: 100%;
         height: 100%;
         background-size: cover;
@@ -50,7 +35,7 @@
       }
 
       .row {
-        padding-top: 200px;
+        padding-top: 100px;
       }
       
       .center {
@@ -97,9 +82,9 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#div1">Wedding #1</a></li>
-            <li><a href="#div2">Wedding #2</a></li>
-            <li><a href="#div3">Wedding #3</a></li>
+            <!--<li class="active"><a href="#div1">Page 1</a></li>
+            <li><a href="#div2">Page 2</a></li>
+            <li><a href="#div3">Page 3</a></li>-->
           </ul>
 
         </div>
@@ -115,15 +100,33 @@
 
       <div class="row">
 
-        Test
+          <div class="col-md-6 col-md-offset-3 center">
 
-        Test
+              <h1 class="center white">Login</h1>
 
-        Test
+              <p class="lead center white">Enter your Login Information</p>
 
-        <button id="Logout" class="btn btn-success btn-lrg">Login Out</button>
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Eg. jCabral"/>
+                  <br>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Secret"/>
+                </div>
 
-      </div>
+                <button id="Login" class="btn btn-success btn-lrg">Login</button>
+              </form>
+
+              <div id="success" class="alert alert-success">Success!</div>
+
+              <div id="fail" class="alert alert-danger">No matching username or password. Please try again</div>
+
+              <div id="noCity" class="alert alert-danger">Nothing was entered!</div>
+
+          </div>
+
+          
+
+        </div>
 
     </div>
 
@@ -133,22 +136,31 @@
 
     <script>
 
-      $("#Logout").click(function(event) {
+      $("#Login").click(function(event) {
 
         event.preventDefault();
 
-        <?php
-            // remove all session variables
-            session_unset(); 
+        //hide all previous alert
+        $(".alert").hide();
 
-            // destroy the session 
-            session_destroy(); 
-        ?>
+        var username = $("#username").val();
+        var password = $("#password").val();
 
-        window.location.href = "Login.php";
+        var loginSuccess = $.post("src/php/login.php", { username: username, password: password }, function(data) {
+
+          if(data=="") {
+            window.location.href = "index.php";
+          } else {
+            $("#fail").html(data).fadeIn();
+          }
+
+
+        });
+
+
+        //alert(JSON.stringify(loginSuccess, null, 4));
 
       });
-    
 
     </script>
 

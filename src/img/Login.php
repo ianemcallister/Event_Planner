@@ -1,18 +1,3 @@
-<?php
-  
-  //authenticate user, start a session
-  session_start();
-
-  //check for login
-  if(!(isset($_SESSION['login']) && $_SESSION['login']!='')) {
-
-    //if no login redirect to login screen
-    header("Location: Login.php");
-
-  }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +17,8 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+    <link href="src/css/login.css" rel="stylesheet">
+
     <style>
 
       html, body {
@@ -41,7 +27,7 @@
       }
 
       .container {
-        background-image: url("src/img/portfoliobg.jpg");
+        background-image: url("src/img/background.jpg");
         width: 100%;
         height: 100%;
         background-size: cover;
@@ -74,6 +60,7 @@
       margin-top:20px;
       display:none;
       }
+
     </style>
 
   </head>
@@ -97,9 +84,9 @@
 
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#div1">Wedding #1</a></li>
-            <li><a href="#div2">Wedding #2</a></li>
-            <li><a href="#div3">Wedding #3</a></li>
+            <!--<li class="active"><a href="#div1">Page 1</a></li>
+            <li><a href="#div2">Page 2</a></li>
+            <li><a href="#div3">Page 3</a></li>-->
           </ul>
 
         </div>
@@ -115,42 +102,59 @@
 
       <div class="row">
 
-        Test
+          <div class="col-md-6 col-md-offset-3 center">
 
-        Test
+              <h1 class="center white">Login</h1>
 
-        Test
+              <p class="lead center white">Enter your Login Information</p>
 
-        <button id="Logout" class="btn btn-success btn-lrg">Login Out</button>
+              <form>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="username" id="username" placeholder="Eg. jCabral"/>
+                  <br>
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Secret"/>
+                </div>
 
-      </div>
+                <button id="Login" class="btn btn-success btn-lrg">Login</button>
+              </form>
+
+              <div id="success" class="alert alert-success">Success!</div>
+
+              <div id="fail" class="alert alert-danger">Couldn't find weather data for that city. Please try again</div>
+
+              <div id="noCity" class="alert alert-danger">Please enter a city!</div>
+
+          </div>
+
+          
+
+        </div>
+
+
 
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <!-- Include all compiled plugins (below), or include individual files as needed -->
+      <script>
 
-    <script>
+        $("#Login").click(function(event) {
 
-      $("#Logout").click(function(event) {
+          event.preventDefault();
 
-        event.preventDefault();
+          $.post("src/php/login.php", { username:'username', password:'password' }, function (data) {
 
-        <?php
-            // remove all session variables
-            session_unset(); 
+            if(data=="logged in!") {
+              window.location = 'index.php';
+              //window.location = 'https://www.google.co.kr/?gfe_rd=cr&ei=wbz2VfX3FeTM8gfA-p7QDA&gws_rd=ssl';
+            }
 
-            // destroy the session 
-            session_destroy(); 
-        ?>
+          }); 
 
-        window.location.href = "Login.php";
+        });
 
-      });
-    
-
-    </script>
+      </script>
 
   </body>
 </html>
