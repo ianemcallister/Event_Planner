@@ -70,23 +70,6 @@
         <div class="navbar-header">
           <a href="" class="navbar-brand">JessicaCabral.com</a>
 
-          <button type="button" class="navbar-toggle" data-toggle="collapse"  data-target=".navbar-collapse">
-
-            <span class="sr-only">Toggle Navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-
-        </div>
-
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <!--<li class="active"><a href="#div1">Page 1</a></li>
-            <li><a href="#div2">Page 2</a></li>
-            <li><a href="#div3">Page 3</a></li>-->
-          </ul>
-
         </div>
 
       </div>
