@@ -100,26 +100,27 @@ myApp.controller('eventsController', ['eventDataService', '$scope', '$routeParam
         $scope.vendors = eval(String("$scope.data." + $routeParams.eventTitle + ".vendors"));
         $scope.images = eval(String("$scope.data." + $routeParams.eventTitle + ".images"));
 
+        $scope.eventPath = $routeParams.eventTitle
+
     });
 
+    //jssor slider options
     $scope.basicUsageOptions = {
-                       $AutoPlay: true
-                   };
+        $AutoPlay: true
+    };
+    //jssor slider options
+    $scope.sliderWithArrowOptions = {
+        $DragOrientation: 3,                            //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+        $SlideDuration: 80,                            //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
 
-                    $scope.sliderWithArrowOptions = {
-                        $DragOrientation: 3,                            //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
-                        $SlideDuration: 80,                            //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
-
-                        $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
-                            $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
-                            $ChanceToShow: 2,                           //[Required] 0 Never, 1 Mouse Over, 2 Always
-                            $AutoCenter: 2,                             //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
-                            $Steps: 1                                   //[Optional] Steps to go for each navigation request, default value is 1
-                        }
-                    }
-
-    $scope.images = ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg", "07.jpg", "08.jpg", "09.jpg", "10.jpg", "11.jpg", "12.jpg", "13.jpg", "14.jpg", "15.jpg", "16.jpg", "17.jpg", "18.jpg", "19.jpg"];
-
+        $ArrowNavigatorOptions: {                       //[Optional] Options to specify and enable arrow navigator or not
+            $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+            $ChanceToShow: 2,                           //[Required] 0 Never, 1 Mouse Over, 2 Always
+            $AutoCenter: 2,                             //[Optional] Auto center arrows in parent container, 0 No, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+            $Steps: 1                                   //[Optional] Steps to go for each navigation request, default value is 1
+        }
+    }
+    
 }]);    
 
 myApp.controller('pressController', ['$scope', function($scope) {

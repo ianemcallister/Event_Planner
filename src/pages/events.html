@@ -8,16 +8,15 @@
 	<!--Gallery row-->
 	<div>
         <h3>The Gallery</h3>
-            <div class="slides-container"
-                    enable-jssor
-                    jssor-options="basicUsageOptions"
-                    jssor-trigger="true"
-                    style="position: relative; top: 0px; left: 0px; width: 720px; height: 480px;">
+            <div class="slides-container" style="position: relative; top: 0px; left: 0px; width: 720px; height: 480px;">
                 <!-- Slides Container -->
                 <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 720px; height: 480px;">
-                    <div><img u="image" src="src/img/Morsel_and_James/01.jpg" /></div>
-                    <div><img u="image" src="src/img/Morsel_and_James/02.jpg" /></div>
-                    <div><img u="image" src="src/img/Morsel_and_James/03.jpg" /></div>
+                    <div ng-repeat='imageFilename in images' enable-jssor jssor-options="basicUsageOptions" jssor-trigger="{{$last}}">
+                        <img u="image" 
+                        	ng-if="imageFilename" 
+                        	img ng-src="src/img/{{eventPath}}/{{imageFilename}}" 
+                        	err-src="http://google.com/favicon.ico"/>
+                    </div>
                 </div>
             </div>
     </div>
