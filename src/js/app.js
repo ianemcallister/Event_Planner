@@ -1,5 +1,5 @@
 // MODULE
-var myApp = angular.module('jessicaCabral', ['ngRoute']);
+var myApp = angular.module('jessicaCabral', ['ngRoute', 'ui']);
 
 // ROUTES
 myApp.config(function ($routeProvider) {
@@ -24,7 +24,7 @@ myApp.config(function ($routeProvider) {
         activetab: 'events'
     })
     
-    .when('/events/:eventTitle', {
+    .when('/events/:eventNum/:eventTitle', {
         templateUrl: 'src/pages/events.html',
         controller: 'eventsController',
         activetab: 'events'
@@ -37,6 +37,25 @@ myApp.config(function ($routeProvider) {
     })
     
 });
+
+//SERVICES
+myApp.factory('eventDataService', function($http) {
+  var myService = {
+    async: function() {
+      // $http returns a promise, which has a then function, which also returns a promise
+      var promise = $http.get('src/php/api.php').then(function (response) {
+        // The then function here is an opportunity to modify the response
+        console.log(response);
+        // The return value gets picked up by the then in the controller.
+        return response.data;
+      });
+      // Return the promise to the controller
+      return promise;
+    }
+  };
+  return myService;
+});
+
 
 
 // CONTROLLERS
@@ -62,13 +81,40 @@ myApp.controller('aboutMeController', ['$scope', function($scope) {
 
 }]);
 
-myApp.controller('eventsController', ['$scope', function($scope) {
+myApp.controller('eventsController', ['eventDataService', '$scope', '$routeParams', function(eventDataService, $scope, $routeParams) {
 
-    $scope.name = 'Weddings';
-    
+    //access event data
+    eventDataService.async().then(function(d) { //2. so you can use .then()
+        $scope.data = d;
+
+        //assign local variables
+        $scope.title = eval(String("$scope.data." + $routeParams.eventTitle + ".title"));
+        $scope.testimonials = eval(String("$scope.data." + $routeParams.eventTitle + ".testimonials"));
+        $scope.vendors = eval(String("$scope.data." + $routeParams.eventTitle + ".vendors"));
+        $scope.images = eval(String("$scope.data." + $routeParams.eventTitle + ".images"));
+
+        console.log($scope.testimonials);
+    });
+
+
+
 }]);	
 
 myApp.controller('pressController', ['$scope', function($scope) {
 
 	$scope.name = 'Press';
 }]);
+
+
+
+// DIRECTIVES
+myApp.directive("testimonial", function() {
+    return {
+        restrict: 'AECM',
+        templateUrl: 'src/directives/testimonial.html',
+        replace: true,
+        scope: {
+            testimonialObject: "=",
+        }
+    }
+});

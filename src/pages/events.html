@@ -2,17 +2,25 @@
 	
 	<!--Header row-->
 	<div class="row center header" id="header">
-		<h1>{{ name }}</h1>
+		<h1>{{ title }}</h1>
 	</div>
 
-	<!--Story & Gallery row-->
+	<!--Gallery row-->
 	<div>
-		<h3>The Story and Gallery</h3>
+        <h3>The Gallery</h3>
+    </div>
+
+	<!--Story row-->
+	<div>
+		<h3>The Story</h3>
 	</div>
 
 	<!--Testimonials row-->
 	<div>
 		<h3>Testimonials</h3>
+		<div>
+			<testimonial testimonial-object="testimonial" ng-repeat="testimonial in testimonials"></testimonial>
+		</div>
 	</div>
 
 	<!--Vendors row-->
