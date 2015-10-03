@@ -46,10 +46,10 @@
 							<li class="dropdown" ng-class="{active:isActive('/events')}">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="" data-target="">Events</a>
 								<ul class="dropdown-menu">
-                    				<li><a href="#/events/100/Angelina_and_Francesco" data-target="#">Angelina &amp Francesco</a></li>
-                    				<li><a href="#/events/101/Chelsea_and_Keith" data-target="#">Chelsea &amp Keith</a></li>
-                    				<li><a href="#/events/102/Morsel_and_James" data-target="#">Morsel &amp James</a></li> 
-                    				<li><a href="#/events/103/Sabrina_and_Felicio" data-target="#">Sabrina &amp Felicio</a></li>
+                    				<li><a href="#/events/Angelina_and_Francesco" data-target="#">Angelina &amp Francesco</a></li>
+                    				<li><a href="#/events/Chelsea_and_Keith" data-target="#">Chelsea &amp Keith</a></li>
+                    				<li><a href="#/events/Morsel_and_James" data-target="#">Morsel &amp James</a></li> 
+                    				<li><a href="#/events/Sabrina_and_Felicio" data-target="#">Sabrina &amp Felicio</a></li>
                					</ul>
 							</li>
 							<li ng-class="{active:isActive('/press')}"><a href="#/press" data-target="#">Press</a></li>
@@ -75,6 +75,9 @@
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.js"></script>
     	<!-- Include all compiled plugins (below), or include individual files as needed -->
     	<script src="src/js/bootstrap.min.js"></script>
-
+    	<!-- Load the dang-jssor plugin -->
+    	<script type="text/javascript" src="src/js/dang-jssor.min.js"></script>
+    	<script type="text/javascript" src="src/js/jssor.slider.js"></script>
+		<script type="text/javascript" src="src/js/jssor.slider.mini.js"></script>
 	</body>
 </html>

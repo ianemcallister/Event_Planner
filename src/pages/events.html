@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="eventsController">
 	
 	<!--Header row-->
 	<div class="row center header" id="header">
@@ -8,6 +8,18 @@
 	<!--Gallery row-->
 	<div>
         <h3>The Gallery</h3>
+            <div class="slides-container"
+                    enable-jssor
+                    jssor-options="basicUsageOptions"
+                    jssor-trigger="true"
+                    style="position: relative; top: 0px; left: 0px; width: 720px; height: 480px;">
+                <!-- Slides Container -->
+                <div u="slides" style="cursor: move; position: absolute; overflow: hidden; left: 0px; top: 0px; width: 720px; height: 480px;">
+                    <div><img u="image" src="src/img/Morsel_and_James/01.jpg" /></div>
+                    <div><img u="image" src="src/img/Morsel_and_James/02.jpg" /></div>
+                    <div><img u="image" src="src/img/Morsel_and_James/03.jpg" /></div>
+                </div>
+            </div>
     </div>
 
 	<!--Story row-->
@@ -26,6 +38,9 @@
 	<!--Vendors row-->
 	<div>
 		<h3>Vendors</h3>
+		<div>
+			<vendor class="angular-with-newlines" vendor-object="vendor" ng-repeat="vendor in vendors"></vendor>
+		</div>
 	</div>
 
 	<!--Footer row-->
